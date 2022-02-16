@@ -1,0 +1,15 @@
+#!/bin/sh
+
+TOGGLE=$HOME/.toggle
+
+if [ ! -e $TOGGLE ]; then
+    touch $TOGGLE
+    pamixer --default-source -u
+    paplay $HOME/.local/bin/sounds/unmute.ogg
+    notify-send "Mic on"
+else
+    rm $TOGGLE
+    pamixer --default-source -m
+    paplay $HOME/.local/bin/sounds/mute.ogg
+    notify-send "Mic off"
+fi

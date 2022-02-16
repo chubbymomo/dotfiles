@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cd ~/Programs/Momos-Survival-Modpack/
+rm -Rf $(find . -name "*" ! -name "LICENSE" ! -name "README.md" ! -path "./.git*")
+
+cd ~/Downloads
+unzip "Momo s Survival 1 16-$("" | dmenu -p "Which version of the modpack do you wish to unzip?")" -d ~/Programs/Momos-Survival-Modpack/
+
+cd ~/Programs/Momos-Survival-Modpack/
+
+git commit -a

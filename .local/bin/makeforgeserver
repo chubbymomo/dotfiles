@@ -1,0 +1,26 @@
+#!/bin/bash
+
+dir=$("" | dmenu -p "What directory do you want to make the server in? (If the directory doesn't exist it will make it).")
+
+mkdir $dir
+
+cd $dir
+
+mcversion=$("" | dmenu -p "What version of Minecraft?")
+
+forgeversion=$("" | dmenu -p "What version of Forge?")
+
+wget https://maven.minecraftforge.net/net/minecraftforge/forge/$mcversion-$forgeversion/forge-$mcversion-$forgeversion-installer.jar
+
+java -jar forge-$mcversion-$forgeversion-installer.jar --installServer
+
+rm forge-$mcversion-$forgeversion-installer.jar
+
+cat << STOP > start.sh
+#!/bin/sh
+exec java -Xms1G -Xmx5G -jar forge-$mcversion-$forgeversion.jar --nogui
+STOP
+
+chmod +x start.sh
+echo "eula=true" > eula.txt
+mkdir mods
