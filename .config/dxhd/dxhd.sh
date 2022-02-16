@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # VoidSymbol
-	$HOME/.local/bin/mictoggle
+	sh $HOME/.local/bin/mictoggle
